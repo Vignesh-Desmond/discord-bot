@@ -9,7 +9,7 @@ from youtube_dl import YoutubeDL
 import requests
 
 bot = commands.Bot(command_prefix="paatu ")
-DISCORD_TOKEN = "ODA5NjQzMTEwNDg0MTQ4MjI0.YCYE5w.r52DUZ3qjOChZUY_Avz5AmH_QH8"
+DISCORD_TOKEN = ""
 
 
 @bot.event
