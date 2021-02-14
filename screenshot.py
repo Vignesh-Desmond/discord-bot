@@ -25,15 +25,20 @@ def take_screenshot():
     image = ImageGrab.grab().convert("RGB")
     im = image.crop((left, top, right, bottom))
     na = np.array(im)
-    yellowY, yellowX = np.where(np.all(na == [222, 242, 248], axis=2))
-    top, bottom = yellowY[0], yellowY[-1]
-    left, right = yellowX[0], yellowX[-1]
+    lavenderY, lavenderX = np.where(np.all(na == [222, 242, 248], axis=2))
+    top, bottom = lavenderY[0], lavenderY[-1]
+    left, right = lavenderX[0], lavenderX[-1]
     ROI = na[top:bottom, left:right]
     return Image.fromarray(ROI)
 
 
 def pytesseract_ocr(image):
-    text = pytesseract.image_to_string(image, config="--psm 6 --oem 3")
+    na = np.array(image)
+    whitesmokeY, _ = np.where(np.all(na == [237, 244, 246], axis=2))
+    top, bottom = whitesmokeY[0], whitesmokeY[-1]
+    ROI = na[: top - 40, :]
+    final = Image.fromarray(ROI)
+    text = pytesseract.image_to_string(final, config="--psm 6 --oem 3")
     return text
 
 
@@ -67,8 +72,6 @@ async def screenshot_takeNsend():
                 timestamp=datetime.now(pytz.timezone("Asia/Kolkata")),
             )
             embed.set_image(url="attachment://image.png")
-
-            # await channel.send(file=file)
             await channel.send(file=file, embed=embed)
         print("Screenshot sent")
         await asyncio.sleep(1)
