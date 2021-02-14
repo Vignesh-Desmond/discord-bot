@@ -55,7 +55,16 @@ async def screenshot_takeNsend():
         with BytesIO() as image_binary:
 
             screenshot_image = take_screenshot()
-            screenshot_image.saFritzingtime.now(pytz.timezone("Asia/Kolkata")),
+            screenshot_image.save(image_binary, "PNG")
+            image_binary.seek(0)
+            file = discord.File(fp=image_binary, filename="image.png")
+
+            ocr_text = pytesseract_ocr(screenshot_image)
+            embed = discord.Embed(
+                title=f"Screenshot {screenshot_count}",
+                colour=discord.Colour(0xD8C538),
+                description=pytesseract_ocr(screenshot_image),
+                timestamp=datetime.now(pytz.timezone("Asia/Kolkata")),
             )
             embed.set_image(url="attachment://image.png")
 
