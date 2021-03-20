@@ -72,6 +72,10 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print("------")
+    channel = client.get_channel(CHANNEL_ID)
+    await channel.send("Vanakkam")
+    await asyncio.sleep(1)
+    await channel.send("https://media.giphy.com/media/O8YQGdQapcRvW/giphy.gif")
     screenshot_takeNsend.start()
 
 
