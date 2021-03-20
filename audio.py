@@ -6,9 +6,9 @@ import discord
 from discord.ext import commands
 from asyncio import sleep
 
-PATH = "ivanda.mp3"
+PATH = "audio.mp3"
 bot = commands.Bot(command_prefix="shadow ")
-DISCORD_TOKEN = "ODA5Nzg5MzgwOTUyNzE5NDAw.YCaNIQ.uWN9wOdNtBDh_kB9mLCKkdWTPwY"
+DISCORD_TOKEN = ""
 
 
 @bot.event
@@ -45,7 +45,7 @@ async def on_voice_state_update(member, before, after):
     if (
         before.channel is None
         and after.channel is not None
-        and (member.id == 569503886038138900 or member.id == 490916719792095243)
+        and (member.id ==  or member.id == )
     ):
         voice_channel = member.voice.channel
         channel = voice_channel.name
