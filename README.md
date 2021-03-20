@@ -1,5 +1,6 @@
-# screenshot-discord
+# Discord bot
 
+## Screenshot bot
 Takes screenshot when pressed a custom keyboard shortcut and sends it to a discord channel via bot
 
 ## Installation
