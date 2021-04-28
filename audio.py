@@ -3,20 +3,26 @@
 # added opus
 
 import discord
+import random
 from discord.ext import commands
 from asyncio import sleep
+from dotenv import load_dotenv
+import os
 
-PATH = "audio.mp3"
-bot = commands.Bot(command_prefix="shadow ")
-DISCORD_TOKEN = ""
+PATH_LIST = ["./audio.mp3", "./audio2.mp3"] # AUDIO PATHS HERE
+PATH = random.choice(PATH_LIST)
 
+load_dotenv()
+
+bot = commands.Bot(command_prefix="!")
+TOKEN = os.environ["TOKEN"]
 
 @bot.event
 async def on_ready():
     print(f"Bot connected as {bot.user}")
 
 
-@bot.command(name="potta")
+@bot.command(name="lol")
 async def mp3player(ctx):
     # Gets voice channel of message author
     voice_channel = ctx.author.voice.channel
@@ -45,15 +51,15 @@ async def on_voice_state_update(member, before, after):
     if (
         before.channel is None
         and after.channel is not None
-        and (member.id ==  or member.id == )
+        and (member.id == "<ID_HERE>" or member.id == "<ID_HERE>") # extend or for multiple users
     ):
         voice_channel = member.voice.channel
         channel = voice_channel.name
         vc = await voice_channel.connect()
         vc.play(
             discord.FFmpegPCMAudio(
-                # executable="/usr/bin/ffmpeg",
-                executable="/app/vendor/ffmpeg/ffmpeg",
+                executable="/usr/bin/ffmpeg",
+                # executable="/app/vendor/ffmpeg/ffmpeg",
                 source=PATH,
             )
         )
@@ -62,4 +68,4 @@ async def on_voice_state_update(member, before, after):
         await vc.disconnect()
 
 
-bot.run(DISCORD_TOKEN)
+bot.run(TOKEN)

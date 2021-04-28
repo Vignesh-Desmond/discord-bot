@@ -44,3 +44,19 @@ Plays the given URL in the voice channel of the connected user who commanded it.
 - (optional) Set a commmand and command prefix.
 
 - Run the python file with venv activated `python youtube.py`
+
+## Annoy bot (?)
+
+Basically this bot plays a random audio file from a list of audio files whenever a specific user (or users) join a voice channel. Also can be triggered manually using a command. Use this to annoy someone.
+
+### Usage
+
+- Add your Discord API token to the `.env` file. (ignore if done already)
+
+- Move the audio files you want to play locally, and add them to `PATH_LIST`
+
+- Add ID of user or users in `member.id == <ID_HERE>` ([How to get User ID](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-))
+
+- (optional) Set a commmand and command prefix.
+
+- Run the python file with venv activated `python audio.py`
