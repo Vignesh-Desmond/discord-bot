@@ -14,10 +14,10 @@ from pymongo import MongoClient
 mongo_key = os.getenv("MONGOKEY")
 
 client = MongoClient(
-    f"mongodb+srv://desmond:{mongo_key}@cluster0.s3hok.mongodb.net/gifdb?retryWrites=true&w=majority"
+    f"<YOUR_DB_HERE>"
 )
-db = client.gifdb
-collection = db.gifs
+db = client.gifdb # your db here
+collection = db.gifs # your collection here
 
 TOKEN = os.getenv("TOKEN")
 client = commands.Bot(command_prefix="$")
@@ -35,27 +35,10 @@ def get_unique_tags():
 
 
 status_list = [
-    "thala",
-    "thalapathy",
-    "anil",
-    "aamai",
-    "sasikumar",
-    "samuthirakani",
-    "captain kanth",
-    "thalaiva",
-    "prasanth",
-    "mayilvaganam",
-    "osthe",
-    "simbu",
-    "STR",
-    "mahesh babu",
-    "vedhanayagam",
-    "yuvanshankarraja",
-    "TNEB",
-    "borotta suri",
-    "surakarthikeyan",
+    "lol", "what",  
 ]
 
+# Custom status list
 
 @tasks.loop(seconds=300.0)
 async def status_task():
@@ -75,7 +58,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if "bot" in message.content and message.channel.id != 798516544597786655:
+    if "bot" in message.content and message.channel.id != 123:
         text = message.content.lower().replace("bot", "")
         unique_tags = get_unique_tags()
         found_tags = {x for x in unique_tags if x in text}
@@ -93,8 +76,8 @@ async def on_message(message):
         if selected_gif:
             await message.channel.send(selected_gif)
         else:
-            illa = text.rstrip()
-            await message.channel.send(f"{illa} ku lam gif illa kelambu")
+            notfound = text.rstrip()
+            await message.channel.send(f"No gifs found for {notfound} ")
     await client.process_commands(message)
 
 
@@ -106,18 +89,18 @@ async def checkgif(ctx, gif):
             l = list(tagdict["tags"].strip("][").split(", "))
         await ctx.send(l[1:-1])
     else:
-        await ctx.send("mandamayiru dhan iruku nee keta gif ila")
+        await ctx.send("No gif found")
 
 
 @client.command()
 async def addgif(ctx, gif, tags):
     if gif in collection.distinct("gifs"):
-        await ctx.send("Adhellam already iruku add panna mudiyadhu")
+        await ctx.send("Already added")
     else:
         gifdict = {"gifs": gif, "tags": tags}
         x = collection.insert_one(gifdict)
         print("Added gif {} with tags {}, UID: {}".format(gif, tags, x.inserted_id))
-        await ctx.send("Add panten")
+        await ctx.send("Added gif")
 
 
 client.run(TOKEN)
