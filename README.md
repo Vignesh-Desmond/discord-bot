@@ -1,4 +1,6 @@
 # Discord bot
+[![Discord.py](https://img.shields.io/badge/Uses-Discord.py-violet?style=for-the-badge&logo=Discord&colorB=7289da)](https://discordpy.readthedocs.io/en/latest/index.html)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://lbesson.mit-license.org/)
 
 ### Installation
 
@@ -9,10 +11,10 @@ python -m venv <your-env>
 source <your-env>/bin/activate
 ```
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install discord.py and other packages.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install discord.py and other packages using the requirements file.
 
 ```bash
-pip install discord.py keyboard Pillow
+pip install -r requirements.txt
 ```
 
 ## 1. Screenshot bot (with Azure Vision)
@@ -87,4 +89,8 @@ Sends gif using links stored in MongoDB and has custom status refreshing for giv
 
 ### Note
 
-[Mongodb](https://www.mongodb.com/) is required for this file. See the link for more info and how to start your own DB cluster.
+[Mongodb](https://www.mongodb.com/) is required for this program. See the link for more info and how to start your own DB cluster.
+
+## License
+
+This software is licensed under the terms of the [MIT License](./LICENSE).
