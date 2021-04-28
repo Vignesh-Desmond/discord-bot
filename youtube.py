@@ -7,9 +7,13 @@ from asyncio import sleep
 from discord.utils import get
 from youtube_dl import YoutubeDL
 import requests
+from dotenv import load_dotenv
+import os
 
-bot = commands.Bot(command_prefix="paatu ")
-DISCORD_TOKEN = ""
+load_dotenv()
+
+bot = commands.Bot(command_prefix="!")
+TOKEN = os.environ["TOKEN"]
 
 
 @bot.event
@@ -28,14 +32,14 @@ def search(query):
     return (info, info["formats"][0]["url"])
 
 
-@bot.command(name="podu")
+@bot.command(name="play")
 async def play(ctx, *, query=None):
     if query:
         FFMPEG_OPTS = {
             "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5",
             "options": "-vn",
         }
-        video, source = search(query)
+        _, source = search(query)
         voice = get(bot.voice_clients, guild=ctx.guild)
 
         channel = ctx.author.voice.channel
@@ -51,11 +55,11 @@ async def play(ctx, *, query=None):
                 after=lambda e: print("done", e),
             )
             voice.is_playing()
-            await ctx.send(f"Paatu potachu.")
+            await ctx.send(f"Song playing now.")
         else:
-            await ctx.send(f"Paatu odudhu le.")
+            await ctx.send(f"Song running.")
     else:
-        await ctx.send("Petta pota paatu poduven (adhavadhu url)")
+        await ctx.send("No URL Provided.")
 
 
-bot.run(DISCORD_TOKEN)
+bot.run(TOKEN)

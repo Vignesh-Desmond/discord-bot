@@ -33,3 +33,14 @@ Takes screenshot when pressed a custom keyboard shortcut, performs OCR via Azure
 ### Note
 
 If you dont want to use Azure Vision, there is another file [screenshot.py](./screenshot.py) which uses Tesseract OCR. Installation instructions for Tesseract [here](https://www.bl.uk/britishlibrary/~/media/bl/global/early%20indian%20printed%20books/training%20resources/installing%20and%20using%20tesseract%20ocr.pdf)
+
+## Song player bot (Youtube URL)
+Plays the given URL in the voice channel of the connected user who commanded it.
+
+### Usage
+
+- Add your Discord API token to the `.env` file. (ignore if done already)
+
+- (optional) Set a commmand and command prefix.
+
+- Run the python file with venv activated `python youtube.py`
