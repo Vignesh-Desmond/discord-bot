@@ -39,17 +39,6 @@ def take_screenshot():
 
 
 def pytesseract_ocr(image):
-    # If only question is needed
-    # na = np.array(image)
-    # whitesmokeY, _ = np.where(np.all(na == [237, 244, 246], axis=2))
-    # # if whitesmokeY.size == 0:
-    # #     greyY, _ = np.where(np.all(na == [233, 236, 239], axis=2))
-    # #     topgrey = greyY[0]
-    # #     ROI = na[: topgrey - 40, :]
-    # # else:
-    # topwhitesmoke = whitesmokeY[0]
-    # ROI = na[: topwhitesmoke - 40, :]
-    # final = Image.fromarray(ROI)
     text = pytesseract.image_to_string(image, config="--psm 6 --oem 3")
     return text
 
