@@ -11,13 +11,10 @@ import keyboard
 from datetime import datetime
 import pytz
 import numpy as np
-import pytesseract
 import os
 from dotenv import load_dotenv
 
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
-from azure.cognitiveservices.vision.computervision.models import OperationStatusCodes
-from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
 from msrest.authentication import CognitiveServicesCredentials
 
 load_dotenv()
