@@ -2,7 +2,7 @@ numpy==1.17.4
 pytesseract==0.3.7
 requests==2.22.0
 pytz==2019.3
-azure_storage==0.37.0
+azure-cognitiveservices-vision-computervision==0.8.0
 discord.py==1.7.1
 keyboard==0.13.5
 msrest==0.6.21
